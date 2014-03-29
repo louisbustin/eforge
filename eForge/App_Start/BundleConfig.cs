@@ -18,7 +18,7 @@ namespace eForge {
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap_theme_slate.css",
                       "~/Content/site.css"));
         }
     }
