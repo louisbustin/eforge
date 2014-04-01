@@ -50,6 +50,7 @@ namespace eForge.Controllers
         {
             if (ModelState.IsValid)
             {
+                blogentrycategory.LastUpdatedDate = blogentrycategory.CreateDate = DateTime.UtcNow;
                 db.BlogEntryCategories.Add(blogentrycategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +79,11 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="BlogEntryCategoryId,Name,Description")] BlogEntryCategory blogentrycategory)
+        public ActionResult Edit([Bind(Include="BlogEntryCategoryId,Name,Description,CreateDate")] BlogEntryCategory blogentrycategory)
         {
             if (ModelState.IsValid)
             {
+                blogentrycategory.LastUpdatedDate = DateTime.UtcNow;
                 db.Entry(blogentrycategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

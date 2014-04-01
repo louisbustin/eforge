@@ -24,6 +24,6 @@ namespace eForgeModels
         public System.Data.Entity.DbSet<eForgeModels.BlogEntryCategory> BlogEntryCategories { get; set; }
 
         public System.Data.Entity.DbSet<eForgeModels.BlogEntry> BlogEntries { get; set; }
-    
+
     }
 }

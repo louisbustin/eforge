@@ -19,26 +19,26 @@
         @Html.HiddenFor(model => model.BlogEntryId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BlogId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BlogId)
-                @Html.ValidationMessageFor(model => model.BlogId)
+                @Html.EditorFor(model => model.Subject)
+                @Html.ValidationMessageFor(model => model.Subject)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Body)
+                @Html.TextAreaFor(model => model.Body)
                 @Html.ValidationMessageFor(model => model.Body)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastModifiedDate, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Summary, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModifiedDate)
-                @Html.ValidationMessageFor(model => model.LastModifiedDate)
+                @Html.TextAreaFor(model => model.Summary)
+                @Html.ValidationMessageFor(model => model.Summary)
             </div>
         </div>
 
@@ -50,21 +50,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject)
-                @Html.ValidationMessageFor(model => model.Subject)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Summary, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Summary)
-                @Html.ValidationMessageFor(model => model.Summary)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.UserId, "UserId", new { @class = "control-label col-md-2" })
@@ -73,6 +58,15 @@
                 @Html.ValidationMessageFor(model => model.UserId)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogEntryCategories, "Categories", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.BlogEntryCategories, (MultiSelectList)ViewBag.BlogEntryCategories)
+            </div>
+        </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

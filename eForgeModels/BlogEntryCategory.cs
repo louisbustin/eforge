@@ -11,6 +11,9 @@ namespace eForgeModels {
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public DateTime CreateDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
+
         public ICollection<BlogEntry> BlogEntries { get; set; }
 
         public BlogEntryCategory() {

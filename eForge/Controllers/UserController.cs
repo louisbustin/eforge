@@ -46,10 +46,12 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="UserId,EmailAddress,CanPublish,CreateDate")] User user)
+        public ActionResult Create([Bind(Include="UserId,EmailAddress,CanPublish")] User user)
         {
             if (ModelState.IsValid)
             {
+                user.LastUpdateDate = DateTime.UtcNow;
+                user.CreateDate = DateTime.UtcNow;
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +84,7 @@ namespace eForge.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.LastUpdateDate = DateTime.UtcNow;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

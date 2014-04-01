@@ -128,6 +128,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404010240327_Initial.cs" />
+    <Compile Include="Migrations\201404010240327_Initial.Designer.cs">
+      <DependentUpon>201404010240327_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404010248011_Add Update Date to User.cs" />
+    <Compile Include="Migrations\201404010248011_Add Update Date to User.Designer.cs">
+      <DependentUpon>201404010248011_Add Update Date to User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404010252073_Add dates to BlogEntryCategory.cs" />
+    <Compile Include="Migrations\201404010252073_Add dates to BlogEntryCategory.Designer.cs">
+      <DependentUpon>201404010252073_Add dates to BlogEntryCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +204,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201404010240327_Initial.resx">
+      <DependentUpon>201404010240327_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404010248011_Add Update Date to User.resx">
+      <DependentUpon>201404010248011_Add Update Date to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404010252073_Add dates to BlogEntryCategory.resx">
+      <DependentUpon>201404010252073_Add dates to BlogEntryCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

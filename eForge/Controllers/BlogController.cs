@@ -40,7 +40,7 @@ namespace eForge.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress");
-            ViewBag.BlogEntryCategoryId = new SelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name");
+            ViewBag.BlogEntryCategories = new MultiSelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name");
             return View();
         }
 
@@ -49,16 +49,23 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="BlogEntryId,BlogId,Body,LastModifiedDate,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
+        public ActionResult Create([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
         {
+            blogentry.LastModifiedDate = DateTime.UtcNow;
+
             if (ModelState.IsValid)
             {
+                var becIds = Request["BlogEntryCategories"].Split(',').Select(id => int.Parse(id)).ToList();
+                blogentry.BlogEntryCategories = db.BlogEntryCategories.Where(bec => becIds.Contains(bec.BlogEntryCategoryId)).ToList();
+
                 db.BlogEntries.Add(blogentry);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
+            ViewBag.BlogEntryCategories = new MultiSelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name");
+
             return View(blogentry);
         }
 
@@ -69,12 +76,19 @@ namespace eForge.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogEntry blogentry = db.BlogEntries.Find(id);
+            BlogEntry blogentry = db.BlogEntries
+                .Include(be => be.BlogEntryCategories)
+                .Where(be => be.BlogEntryId == id)
+                .FirstOrDefault()
+                ;
+
             if (blogentry == null)
             {
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
+            ViewBag.BlogEntryCategories = new MultiSelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name");
+
             return View(blogentry);
         }
 
@@ -83,15 +97,24 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="BlogEntryId,BlogId,Body,LastModifiedDate,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
+        public ActionResult Edit([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
         {
             if (ModelState.IsValid)
             {
+                blogentry.LastModifiedDate = DateTime.UtcNow;
+
+                var becIds = Request["BlogEntryCategories"].Split(',').Select(id => int.Parse(id)).ToList();
+                blogentry.BlogEntryCategories = db.BlogEntryCategories.Where(bec => becIds.Contains(bec.BlogEntryCategoryId)).ToList();
+
+
                 db.Entry(blogentry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
+            ViewBag.BlogEntryCategories = new MultiSelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name");
+
             return View(blogentry);
         }
 
