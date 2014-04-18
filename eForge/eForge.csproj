@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +124,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogEntryCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThoughtsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="eForgeModels\BlogContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -139,6 +141,10 @@
     <Compile Include="Migrations\201404010252073_Add dates to BlogEntryCategory.cs" />
     <Compile Include="Migrations\201404010252073_Add dates to BlogEntryCategory.Designer.cs">
       <DependentUpon>201404010252073_Add dates to BlogEntryCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404180229308_ChangedCategories.cs" />
+    <Compile Include="Migrations\201404180229308_ChangedCategories.Designer.cs">
+      <DependentUpon>201404180229308_ChangedCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,6 +197,11 @@
     <Content Include="Views\Blog\Details.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Thoughts\Create.cshtml" />
+    <Content Include="Views\Thoughts\Delete.cshtml" />
+    <Content Include="Views\Thoughts\Details.cshtml" />
+    <Content Include="Views\Thoughts\Edit.cshtml" />
+    <Content Include="Views\Thoughts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\eForgeModels\eForgeModels.csproj">
@@ -214,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404010252073_Add dates to BlogEntryCategory.resx">
       <DependentUpon>201404010252073_Add dates to BlogEntryCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404180229308_ChangedCategories.resx">
+      <DependentUpon>201404180229308_ChangedCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

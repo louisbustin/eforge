@@ -8,6 +8,7 @@ namespace eForgeModels {
     public class BlogEntry {
 
         public int BlogEntryId { get; set; }
+        public int BlogEntryCategoryId { get; set; }
         public string Body { get; set; }
         public DateTime LastModifiedDate { get; set; }
         public DateTime? PublicationDate { get; set; }
@@ -16,10 +17,9 @@ namespace eForgeModels {
         public int UserId { get; set; }
 
         public virtual User Author { get; set; }
-        public virtual ICollection<BlogEntryCategory> BlogEntryCategories { get; set; }
+        public virtual BlogEntryCategory Category { get; set; }
 
         public BlogEntry() {
-            BlogEntryCategories = new HashSet<BlogEntryCategory>();
         }
 
     }

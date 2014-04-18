@@ -10,19 +10,18 @@ using eForgeModels;
 
 namespace eForge.Controllers
 {
-    public class BlogController : Controller
+    public class ThoughtsController : Controller
     {
         private BlogContext db = new BlogContext();
 
-        // GET: /Blog/
+        // GET: /Thoughts/
         public ActionResult Index()
         {
-            ViewBag.ClaimsIdentity = System.Threading.Thread.CurrentPrincipal.Identity;
-            var blogentries = db.BlogEntries.Include(b => b.Author);
+            var blogentries = db.BlogEntries.Include(b => b.Author).Include(b => b.Category);
             return View(blogentries.ToList());
         }
 
-        // GET: /Blog/Details/5
+        // GET: /Thoughts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,7 +36,7 @@ namespace eForge.Controllers
             return View(blogentry);
         }
 
-        // GET: /Blog/Create
+        // GET: /Thoughts/Create
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress");
@@ -45,18 +44,15 @@ namespace eForge.Controllers
             return View();
         }
 
-        // POST: /Blog/Create
+        // POST: /Thoughts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId,BlogEntryCategoryId")] BlogEntry blogentry)
+        public ActionResult Create([Bind(Include="BlogEntryId,BlogEntryCategoryId,Body,LastModifiedDate,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
         {
-            blogentry.LastModifiedDate = DateTime.UtcNow;
-
             if (ModelState.IsValid)
             {
-                
                 db.BlogEntries.Add(blogentry);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,56 +60,45 @@ namespace eForge.Controllers
 
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
             ViewBag.BlogEntryCategoryId = new SelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name", blogentry.BlogEntryCategoryId);
-
             return View(blogentry);
         }
 
-        // GET: /Blog/Edit/5
+        // GET: /Thoughts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogEntry blogentry = db.BlogEntries
-                .Where(be => be.BlogEntryId == id)
-                .FirstOrDefault()
-                ;
-
+            BlogEntry blogentry = db.BlogEntries.Find(id);
             if (blogentry == null)
             {
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
             ViewBag.BlogEntryCategoryId = new SelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name", blogentry.BlogEntryCategoryId);
-
             return View(blogentry);
         }
 
-        // POST: /Blog/Edit/5
+        // POST: /Thoughts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId,BlogEntryCategoryId")] BlogEntry blogentry)
+        public ActionResult Edit([Bind(Include="BlogEntryId,BlogEntryCategoryId,Body,LastModifiedDate,PublicationDate,Subject,Summary,UserId")] BlogEntry blogentry)
         {
             if (ModelState.IsValid)
             {
-                db.BlogEntries.Attach(blogentry);
-                blogentry.LastModifiedDate = DateTime.UtcNow;
-
                 db.Entry(blogentry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.UserId = new SelectList(db.Users, "UserId", "EmailAddress", blogentry.UserId);
             ViewBag.BlogEntryCategoryId = new SelectList(db.BlogEntryCategories, "BlogEntryCategoryId", "Name", blogentry.BlogEntryCategoryId);
-
             return View(blogentry);
         }
 
-        // GET: /Blog/Delete/5
+        // GET: /Thoughts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -128,7 +113,7 @@ namespace eForge.Controllers
             return View(blogentry);
         }
 
-        // POST: /Blog/Delete/5
+        // POST: /Thoughts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

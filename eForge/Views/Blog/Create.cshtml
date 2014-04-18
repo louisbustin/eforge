@@ -65,9 +65,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BlogEntryCategories, "Categories", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BlogEntryCategoryId, "BlogEntryCategoryId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(model => model.BlogEntryCategories, (MultiSelectList)ViewBag.BlogEntryCategories)
+                @Html.DropDownList("BlogEntryCategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.BlogEntryCategoryId)
             </div>
         </div>
 
