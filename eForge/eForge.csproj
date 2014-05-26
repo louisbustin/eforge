@@ -197,11 +197,8 @@
     <Content Include="Views\Blog\Details.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Thoughts\Create.cshtml" />
-    <Content Include="Views\Thoughts\Delete.cshtml" />
-    <Content Include="Views\Thoughts\Details.cshtml" />
-    <Content Include="Views\Thoughts\Edit.cshtml" />
     <Content Include="Views\Thoughts\Index.cshtml" />
+    <Content Include="Views\Thoughts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\eForgeModels\eForgeModels.csproj">
