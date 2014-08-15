@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201404180229308_ChangedCategories.Designer.cs">
       <DependentUpon>201404180229308_ChangedCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408150018351_added LinkText.cs" />
+    <Compile Include="Migrations\201408150018351_added LinkText.Designer.cs">
+      <DependentUpon>201408150018351_added LinkText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -225,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404180229308_ChangedCategories.resx">
       <DependentUpon>201404180229308_ChangedCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408150018351_added LinkText.resx">
+      <DependentUpon>201408150018351_added LinkText.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

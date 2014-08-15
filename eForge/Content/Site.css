@@ -40,3 +40,57 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#categorymenu ul {
+    
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+#categorymenu ul li {
+  list-style-type:none;
+  }
+
+#categorymenu ul li { 
+    display: inline; 
+}
+
+#categorymenu ul li a { 
+    text-decoration: none; 
+    padding: .2em 1em;
+    color: #eee;
+}
+
+#categorymenu ul li a:hover
+{
+    color: #fff;
+    background-color: #000;
+}
+
+#categorymenu a span {
+  display:none;
+}
+
+#categorymenu a, #categorymenu a:visited {
+    position: relative;
+}
+
+#234 a:hover span {
+  display:inline;
+  position:relative;
+}
+
+#categorymenu a:hover span {
+  display:inline-block;
+  position:absolute;
+  left:0em;
+  top:3em;
+  text-align:left; /* ADDED */
+  padding:0.5em;  /* ADDED */
+  width:24em; /* ADDED */
+  background-color:#999; /* ADDED */
+  color:#fff; /* ADDED */
+  border:1px solid #808080; /* ADDED */
+}

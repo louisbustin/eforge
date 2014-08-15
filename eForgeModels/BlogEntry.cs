@@ -15,7 +15,7 @@ namespace eForgeModels {
         public string Subject { get; set; }
         public string Summary { get; set; }
         public int UserId { get; set; }
-
+        public string LinkText { get; set; }
         public virtual User Author { get; set; }
         public virtual BlogEntryCategory Category { get; set; }
 

@@ -17,8 +17,34 @@ namespace eForge.Controllers
         // GET: /Thoughts/
         public ActionResult Index()
         {
-            var blogentries = db.BlogEntries.Include(b => b.Author).Include(b => b.Category);
+            var blogentries = db.BlogEntries
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                ;
+            
+            ViewBag.Categories = db.BlogEntryCategories;
+            ViewBag.CurrentCategory = "";
+
+
             return View(blogentries.ToList());
+        }
+
+        // GET: /Thoughts/Category/id
+        public ActionResult Category(string category) {
+            if (string.IsNullOrEmpty(category)) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var blogentries = db.BlogEntries
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .Where(b => b.Category.Name == category)
+                ;
+
+            ViewBag.Categories = db.BlogEntryCategories;
+            ViewBag.CurrentCategory = category;
+
+            return View("Index", blogentries.ToList());
         }
 
         // GET: /Thoughts/Details/5
