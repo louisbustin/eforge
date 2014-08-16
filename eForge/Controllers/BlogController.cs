@@ -51,6 +51,7 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId,BlogEntryCategoryId,LinkText")] BlogEntry blogentry)
         {
             blogentry.LastModifiedDate = DateTime.UtcNow;
@@ -96,6 +97,7 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "BlogEntryId,Body,PublicationDate,Subject,Summary,UserId,BlogEntryCategoryId,LinkText")] BlogEntry blogentry)
         {
             if (ModelState.IsValid)
