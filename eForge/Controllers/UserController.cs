@@ -10,6 +10,7 @@ using eForgeModels;
 
 namespace eForge.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private BlogContext db = new BlogContext();
@@ -46,7 +47,7 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="UserId,EmailAddress,CanPublish")] User user)
+        public ActionResult Create([Bind(Include="UserId,EmailAddress,CanPublish,Name")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="UserId,EmailAddress,CanPublish,CreateDate")] User user)
+        public ActionResult Edit([Bind(Include="UserId,EmailAddress,CanPublish,CreateDate,Name")] User user)
         {
             if (ModelState.IsValid)
             {

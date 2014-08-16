@@ -5,71 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>@Model.Subject</h2>
+<h4>
+    @Model.PublicationDate.Value.ToLongDateString() 
+    @if (!string.IsNullOrEmpty(@Model.Author.Name)) {
+        <span>| @Model.Author.Name</span>
+    }
+    </h4>
+<hr />
 <div>
-    <h4>BlogEntry</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Author.EmailAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Author.EmailAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BlogEntryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BlogEntryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastModifiedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastModifiedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PublicationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PublicationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Subject)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
-
-    </dl>
+     @Html.DisplayFor(model => model.Body)
 </div>
+<p>&nbsp;</p>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BlogEntryId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace eForgeModels {
     public class User {
         public int UserId { get; set; }
+        public string Name { get; set; }
         public string EmailAddress { get; set; }
         public bool CanPublish { get; set; }
         public DateTime CreateDate { get; set; }

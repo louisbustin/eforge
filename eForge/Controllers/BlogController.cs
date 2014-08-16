@@ -10,6 +10,7 @@ using eForgeModels;
 
 namespace eForge.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private BlogContext db = new BlogContext();

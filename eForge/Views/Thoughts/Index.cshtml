@@ -10,7 +10,14 @@
     <ul>
         @foreach (var item in ViewBag.Categories) {
             <li>
-                <a href="~/Thoughts/Category/@item.Name">@item.Name
+                <a href="~/Thoughts/Category/@item.Name">
+                    @if (item.Name.Equals(ViewBag.CurrentCategory)) {
+                        <i>&#42;&nbsp;</i>                        
+                    }
+                    @item.Name
+                    @if (item.Name.Equals(ViewBag.CurrentCategory)) {
+                        <i>&#42;</i>
+                    }
                     <span>@item.Description</span>
                 </a>
             </li>
