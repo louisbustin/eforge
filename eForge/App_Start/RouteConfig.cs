@@ -16,6 +16,12 @@ namespace eForge {
                 defaults: new { controller = "Thoughts", action = "Category" }
             );
 
+            //routes.MapRoute(
+            //    name: "ImageDisplay",
+            //    url: "Images/GetImage/{guid}",
+            //    defaults: new { controller = "Images", action = "GetImage" }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

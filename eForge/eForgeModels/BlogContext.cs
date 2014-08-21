@@ -25,5 +25,7 @@ namespace eForgeModels
 
         public System.Data.Entity.DbSet<eForgeModels.BlogEntry> BlogEntries { get; set; }
 
+        public System.Data.Entity.DbSet<eForgeModels.Image> Images { get; set; }
+
     }
 }

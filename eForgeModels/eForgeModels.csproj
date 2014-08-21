@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="BlogEntry.cs" />
     <Compile Include="BlogEntryCategory.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
