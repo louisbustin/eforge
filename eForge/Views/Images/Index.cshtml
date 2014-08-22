@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="/Images/GetImage?imageGuid=@item.ImageGuid" width="100" height="100"/>
+            @Html.Raw(@item.GetImageTag(100, 100))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

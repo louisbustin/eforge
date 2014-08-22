@@ -1,0 +1,15 @@
+﻿@model IEnumerable<eForgeModels.Image>
+
+<table cellpadding="5" cellspacing="5">
+    @foreach (var img in Model) {
+        <tr>
+            <td>
+                @Html.Raw(img.GetImageTag(100, 100))
+            </td>
+            <td>
+                @img.GetImageLink()
+            </td>
+        </tr>
+
+    }
+</table>

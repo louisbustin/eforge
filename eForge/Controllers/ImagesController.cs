@@ -17,12 +17,14 @@ namespace eForge.Controllers
         private BlogContext db = new BlogContext();
 
         // GET: Images
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Images.ToList());
         }
 
         // GET: Images/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace eForge.Controllers
         }
 
         // GET: Images/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace eForge.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ImageId,Name,AltText")] Image image, HttpPostedFileBase file)
         {
@@ -66,6 +70,7 @@ namespace eForge.Controllers
         }
 
         // GET: Images/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +90,8 @@ namespace eForge.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ImageId,ImageData,Name,AltText,ImageGuid")] Image image)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "ImageId,Name,AltText,ImageGuid")] Image image)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +103,7 @@ namespace eForge.Controllers
         }
 
         // GET: Images/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +121,7 @@ namespace eForge.Controllers
         // POST: Images/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Image image = db.Images.Find(id);
@@ -145,6 +153,12 @@ namespace eForge.Controllers
             }
 
             return this.Image(img.ImageData, img.ContentType);
+        }
+
+        [HttpGet]
+        public ActionResult List() {
+            var images = db.Images;
+            return View("List", images);
         }
 
         protected override void Dispose(bool disposing)
