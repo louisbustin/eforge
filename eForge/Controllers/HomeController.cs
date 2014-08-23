@@ -11,14 +11,14 @@ namespace eForge.Controllers {
         }
 
         public ActionResult About() {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About this website.";
             
 
             return View();
         }
 
         public ActionResult Contact() {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "How to get in touch with me";
 
             return View();
         }

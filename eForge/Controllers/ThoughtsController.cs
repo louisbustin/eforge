@@ -20,6 +20,8 @@ namespace eForge.Controllers
             var blogentries = db.BlogEntries
                 .Include(b => b.Author)
                 .Include(b => b.Category)
+                .Where(b => b.PublicationDate < DateTime.Now)
+                .OrderByDescending(b => b.PublicationDate)
                 ;
             
             ViewBag.Categories = db.BlogEntryCategories;
@@ -38,9 +40,9 @@ namespace eForge.Controllers
             var blogentries = db.BlogEntries
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .Where(b => b.Category.Name == category)
+                .Where(b => b.Category.Name == category && b.PublicationDate < DateTime.Now)
+                .OrderByDescending(b => b.PublicationDate)
                 ;
-
             ViewBag.Categories = db.BlogEntryCategories;
             ViewBag.CurrentCategory = category;
 
